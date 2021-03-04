@@ -1,8 +1,8 @@
 # Project_Demo
 
-This project is a simple game powered by SFML, I'm developing it from 2-3 months;
+This project is a simple game powered by SFML;
 
-This simple project served as a test of my current skills, currently this project is a little bit of an undeveloped and poorly documented mess that I'm trying to improve in spare moments;
+This simple project served as a test of my current skills, currently this project is a little bit of an undeveloped and poorly documented mess that I'm trying to improve in spare time;
 
 # Compile
 
