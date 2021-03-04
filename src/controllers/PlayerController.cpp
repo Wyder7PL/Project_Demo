@@ -12,7 +12,7 @@ Demo::PlayerController::PlayerController(BattleData* data,std::weak_ptr<Input> i
 {
 	data->mousepos.SetPosition(PointU(100,20));
 	
-	/*BattlePawn TESTPawn;
+	BattlePawn TESTPawn;
 	PawnList::GetInstance().OverridePawn("OtterPaladin",TESTPawn);
 	TESTPawn.SetAbilityDisplayMode(Ability::DisplayMode::DrawAndActivate);
 	data->floors["PlayerFloor"].AddPawnAtLocation(std::move(TESTPawn),PointU(0,0));
@@ -25,7 +25,7 @@ Demo::PlayerController::PlayerController(BattleData* data,std::weak_ptr<Input> i
 	BattlePawn TESTPawn2;
 	PawnList::GetInstance().OverridePawn("OtterBalista",TESTPawn2);
 	TESTPawn2.SetAbilityDisplayMode(Ability::DisplayMode::DrawAndActivate);
-	data->floors["PlayerFloor"].AddPawnAtLocation(std::move(TESTPawn2),PointU(1,1));*/
+	data->floors["PlayerFloor"].AddPawnAtLocation(std::move(TESTPawn2),PointU(1,1));
 
 	BattlePawn TESTPawn3;
 	PawnList::GetInstance().OverridePawn("OtterApprentice",TESTPawn3);
@@ -33,7 +33,7 @@ Demo::PlayerController::PlayerController(BattleData* data,std::weak_ptr<Input> i
 	data->floors["PlayerFloor"].AddPawnAtLocation(std::move(TESTPawn3),PointU(0,1));
 	
 	std::pair<std::string,Button> pair = std::make_pair("BattleQuit",std::move(Button(PointU(300,80))));
-	
+	pair.second.UpdateText("Quit");
 	pair.second.SetPosition(PointU(1000,600));
 	pair.second.SetSize(PointU(300,80));
 	pair.second.SetBorderColor(200,0,0,255);
