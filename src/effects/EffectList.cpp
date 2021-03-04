@@ -1,0 +1,53 @@
+#include "EffectList.hpp"
+
+#include "Critical.hpp"
+#include "DefaultDamageAdsorption.hpp"
+#include "DefaultDamageBooster.hpp"
+#include "Distraction.hpp"
+#include "Fire.hpp"
+#include "Marked.hpp"
+#include "Poison.hpp"
+#include "Prepare.hpp"
+#include "Shield.hpp"
+
+#include <iostream>
+
+Demo::EffectList& Demo::EffectList::GetInstance()
+{
+	static EffectList result;
+	return result;
+}
+
+void Demo::EffectList::LoadDefault()
+{
+	Load(new Critical());
+	Load(new DefaultDamageAdsorption());
+	Load(new DefaultDamageBooster());
+	Load(new Distraction());
+	Load(new Fire());
+	Load(new Marked());
+	Load(new Poison());
+	Load(new Prepare());
+	Load(new Shield());
+}
+
+std::vector<std::unique_ptr<Demo::Effect>> Demo::EffectList::CreateEffect(const std::string name, const std::vector<double>& args) const
+{
+	std::vector<std::unique_ptr<Effect>> result;
+	auto iter = effects.find(name);
+	if(iter == effects.end())
+		std::cout << "Forgot to load effect because it doesn't exist\n";
+	if(iter != effects.end())
+	{
+		std::unique_ptr<Effect> ptr((*iter).second->Clone(args));
+		result.push_back(std::move(ptr));
+	}
+	return result;
+}
+
+void Demo::EffectList::Load(Effect* e)
+{
+	std::unique_ptr<Effect> ptr(e);
+	std::string name = ptr->GetName();
+	effects[name] = std::move(ptr);
+}

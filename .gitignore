@@ -1,0 +1,8 @@
+*.project
+*.workspace
+Demo
+.Demo
+./Demo
+Makefile
+obj
+.codelite/

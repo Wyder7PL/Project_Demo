@@ -1,0 +1,4 @@
+// Wahahahahahah
+<effect Adsorption 1>
+<energy Pain 15 15>
+<ability 2.0 0.0 *front <damage Pain 2> >

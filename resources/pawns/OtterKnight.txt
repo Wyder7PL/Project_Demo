@@ -1,0 +1,5 @@
+<effect Adsorption 4>
+<energy Pain 35 35>
+<ability 2.0 0.0 *front <damage Pain 5> >
+<ability 10.0 0.0 *self #CriticalStrike <effect *support Critical 0 2.0 5.0> >
+<ability 15.0 0.0 *aofec #Shield <effect *support Shield 2 1.3 5.0> >

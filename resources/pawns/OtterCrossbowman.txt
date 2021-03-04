@@ -1,0 +1,2 @@
+<energy Pain 25 25>
+<ability 4.0 2.0 *point <damage Pain 5> <effect Distraction 5 4.0> >

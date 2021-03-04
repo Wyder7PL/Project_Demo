@@ -1,0 +1,2 @@
+<energy Pain 10 10>
+<ability 2.0 0.0 *front <damage Pain 5> >

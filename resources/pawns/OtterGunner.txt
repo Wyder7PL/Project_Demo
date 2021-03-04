@@ -1,0 +1,2 @@
+<energy Pain 30 30>
+<ability 2.0 1.0 *point <damage Pain 12> >
