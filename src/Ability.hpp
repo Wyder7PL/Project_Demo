@@ -53,6 +53,9 @@ class Ability
 	void ResetCooldown();
 	void IncreaseCooldown(double amount);
 	
+	bool IsCoolingDown();
+	bool CooldownStatusChanged();
+	
 	void SetAbilityRange(const ActionRange& newRange);
 	ActionRange GetAbilityRange();
 	
@@ -86,6 +89,8 @@ protected:
 private:
 	Bar background;
 	Bar cooldownBar;
+	
+	bool wasCoolingDown = false;
 };
 
 }

@@ -37,6 +37,8 @@ std::vector<Demo::Action> Demo::Ability::Use(const Location& destination, bool t
 		result.push_back(ConstructAction(destination, targetingEnemy));
 		cooldown += maxCooldown;
 		
+		sprite.SetColorMultiply(200,200,200);
+		
 		if(result[0].actionData == "" && result[0].subactions.size() == 0)
 			cooldown -= maxCooldown;
 	}
@@ -67,11 +69,14 @@ double Demo::Ability::GetCooldown()
 
 void Demo::Ability::ReduceCooldown(double amount)
 {
-	if(cooldown > 0.0)
+	if(IsCoolingDown())
 	{
 		cooldown -= amount;
-		if(cooldown < 0.0)
+		if(cooldown <= 0.0)
+		{
 			cooldown = 0.0;
+			sprite.SetColorMultiply(255,255,255);
+		}
 	}
 }
 
@@ -83,7 +88,22 @@ void Demo::Ability::ResetCooldown()
 void Demo::Ability::IncreaseCooldown(double amount)
 {
 	if(amount > 0.0)
+	{
 		cooldown += amount;
+		sprite.SetColorMultiply(0,200,200);
+	}
+}
+
+bool Demo::Ability::IsCoolingDown()
+{
+	return cooldown > 0.0;
+}
+
+bool Demo::Ability::CooldownStatusChanged()
+{
+	bool result = IsCoolingDown() != wasCoolingDown;
+	wasCoolingDown = IsCoolingDown();
+	return result;
 }
 
 void Demo::Ability::SetAbilityRange(const ActionRange& newRange)
