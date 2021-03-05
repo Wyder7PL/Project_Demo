@@ -40,7 +40,7 @@ namespace Demo
 		
 		virtual void CreatePlayerController(std::weak_ptr<Input> ptr);
 		
-		bool BattleEnded();
+		virtual bool BattleEnded();
 		
 	protected:
 		BattleData data;
