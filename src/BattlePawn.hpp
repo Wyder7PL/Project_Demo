@@ -105,6 +105,8 @@ private:
 	
 	std::vector<Action> actionBuffer;
 	std::vector<int> damageToDisplay;
+	
+	bool defaultAbilityCooldown = false;
 	Bar cooldownBar;
 	Sprite bar;
 };

@@ -87,6 +87,17 @@ void Demo::BattlePawn::Update(double delta)
 	{
 		std::unique_ptr<Ability>& abil = abilities[0];
 		cooldownBar.SetPercentage(abil->GetCooldown() * 100.0 / abil->GetMaxCooldown());
+		
+		if(abil->GetCooldown() > 0 && !defaultAbilityCooldown)
+		{
+			defaultAbilityCooldown = true;
+			bar.SetColorMultiply(200,200,200);
+		}
+		else if(abil->GetCooldown() <= 0 && defaultAbilityCooldown)
+		{
+			defaultAbilityCooldown = false;
+			bar.SetColorMultiply(255,255,255);
+		}
 	}
 	
 	bool erased = false;
