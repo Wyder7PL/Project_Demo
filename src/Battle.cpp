@@ -101,7 +101,6 @@ bool Demo::Battle::BattleEnded()
 	return data.exitBattle;
 }
 
-#include <iostream>
 void Demo::Battle::UpdateDamageDisplay(const double& delta)
 {
 	std::deque<DamageDisplay>& dd = data.damageDisplay;
