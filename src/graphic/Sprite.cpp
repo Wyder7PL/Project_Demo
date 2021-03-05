@@ -45,6 +45,20 @@ Demo::PointU Demo::Sprite::GetSize()
 	return PointU(dim.width*sca.x, dim.height*sca.y);
 }
 
+void Demo::Sprite::SetColorMultiply(const unsigned char& r, const unsigned char& g, const unsigned char& b, const unsigned char& a)
+{
+	sprite.setColor(sf::Color(r,g,b,a));
+}
+
+void Demo::Sprite::SetColorMultiply(const unsigned int& rgba)
+{
+	const unsigned char r = (rgba&0xFF000000) >> (8 * 3);
+	const unsigned char g = (rgba&0x00FF0000) >> (8 * 2);
+	const unsigned char b = (rgba&0x0000FF00) >> (8 * 1);
+	const unsigned char a = (rgba&0x000000FF) >> (8 * 0);
+	SetColorMultiply(r,g,b,a);
+}
+
 void Demo::Sprite::HiddenDraw(sf::RenderTarget& target) const
 {
 	target.draw(sprite);

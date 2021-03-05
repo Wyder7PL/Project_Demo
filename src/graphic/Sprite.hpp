@@ -23,6 +23,9 @@ public:
 	void SetSize(const PointU&);
 	PointU GetSize();
 	
+	void SetColorMultiply(const unsigned char& r,const unsigned char& g,const unsigned char& b,const unsigned char& a = 255);
+	void SetColorMultiply(const unsigned int& rgba);
+	
 protected:
 	virtual void HiddenDraw(sf::RenderTarget& ) const override;
 	virtual void UpdateSprite();
