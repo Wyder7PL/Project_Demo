@@ -30,7 +30,7 @@ namespace Demo
 	T RandomInt(const T& min, const T& max)
 	{
 		static std::default_random_engine engine;
-		std::uniform_int_distribution<T> distribution(min,max);
+		std::uniform_int_distribution<T> distribution(min,max);//[min,max]
 		return distribution(engine);
 	}
 	
