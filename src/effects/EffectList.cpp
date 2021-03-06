@@ -4,6 +4,7 @@
 #include "DefaultDamageAdsorption.hpp"
 #include "DefaultDamageBooster.hpp"
 #include "Distraction.hpp"
+#include "Electricity.hpp"
 #include "Fire.hpp"
 #include "Marked.hpp"
 #include "Poison.hpp"
@@ -24,6 +25,7 @@ void Demo::EffectList::LoadDefault()
 	Load(new DefaultDamageAdsorption());
 	Load(new DefaultDamageBooster());
 	Load(new Distraction());
+	Load(new Electricity());
 	Load(new Fire());
 	Load(new Marked());
 	Load(new Poison());

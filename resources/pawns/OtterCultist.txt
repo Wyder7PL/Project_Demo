@@ -1,0 +1,2 @@
+<energy Pain 25 25>
+<ability 4.0 0.0 *point <damage Pain 6> <effect Electricity 10 2> >

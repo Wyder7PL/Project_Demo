@@ -25,6 +25,7 @@ void Demo::Electricity::BattleUpdate(double delta, BattlePawn* pawn)
 {
 	if(durationLeft <= 0.0)
 	{
+		durationLeft += 1.0;
 		if(electricityIntensity < pawnSize)
 		{
 			double cooldown = (double)(electricityIntensity) / (double)(pawnSize); 
@@ -37,8 +38,8 @@ void Demo::Electricity::BattleUpdate(double delta, BattlePawn* pawn)
 				pawn->DealDamage("Pain",electricityIntensity-pawnSize,true);
 		}
 		electricityVoltage -= electricityIntensity;
-		durationLeft += 1.0;
 	}
+	durationLeft -= delta;
 	if(electricityVoltage <= 0)
 		SetToDestroy();
 }

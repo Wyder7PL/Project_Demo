@@ -28,7 +28,7 @@ Demo::PlayerController::PlayerController(BattleData* data,std::weak_ptr<Input> i
 	data->floors["PlayerFloor"].AddPawnAtLocation(std::move(TESTPawn2),PointU(1,1));
 
 	BattlePawn TESTPawn3;
-	PawnList::GetInstance().OverridePawn("OtterApprentice",TESTPawn3);
+	PawnList::GetInstance().OverridePawn("OtterCultist",TESTPawn3);
 	TESTPawn3.SetAbilityDisplayMode(Ability::DisplayMode::DrawAndActivate);
 	data->floors["PlayerFloor"].AddPawnAtLocation(std::move(TESTPawn3),PointU(0,1));
 	
