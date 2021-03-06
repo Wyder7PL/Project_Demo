@@ -6,6 +6,7 @@ Demo::ElectricChain::ElectricChain(BattleData* data, const std::vector<double>& 
 ,electricityVoltage(10)
 ,electricityIntensity(4)
 ,targetsLeft(4)
+,initialDamage(0)
 {
 	for(unsigned int i = 0; i < args.size(); ++i)
 	{
@@ -14,6 +15,7 @@ Demo::ElectricChain::ElectricChain(BattleData* data, const std::vector<double>& 
 			case 0: electricityVoltage = abs(round(args[i])); break;
 			case 1: electricityIntensity = abs(round(args[i])); break;
 			case 2: targetsLeft = abs(round(args[i])); break;
+			case 3: initialDamage = abs(round(args[i])); break;
 			default: break;
 		}
 	}
@@ -89,6 +91,8 @@ void Demo::ElectricChain::SetPotentialTargets()
 
 void Demo::ElectricChain::ApplyElectricityToPawn(BattlePawn& target)
 {
+	if(initialDamage > 0)
+		target.DealDamage("Pain",initialDamage);
 	std::vector<std::unique_ptr<Demo::Effect>> vec;
 	vec = EffectList::GetInstance().CreateEffect("Electricity",{(double)electricityVoltage,(double)electricityIntensity});
 	for(auto& i : vec)

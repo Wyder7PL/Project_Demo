@@ -20,6 +20,7 @@ private:
 	int electricityVoltage;
 	int electricityIntensity;
 	unsigned int targetsLeft;
+	int initialDamage;
 	
 	std::vector<PointU> potentialTargets;
 	std::vector<PointU> hittedTargets;

@@ -21,6 +21,7 @@ Demo::BattlePawn::BattlePawn()
 	cooldownBar.SetRotation(270);
 	
 	pawnCooldownBar.SetColor(255,255,255,150);
+	pawnCooldownBar.SetPercentage(0.0);
 	
 	UpdateAbilityDisplay();
 	UpdateEffectGraphicDisplay();
@@ -37,6 +38,8 @@ Demo::BattlePawn::BattlePawn(const BattlePawn& pawn)
 ,selfLocation(pawn.selfLocation)
 ,displayAbilities(pawn.displayAbilities)
 ,pawnSize(pawn.pawnSize)
+,pawnCooldown(pawn.pawnCooldown)
+,pawnMaxCooldown(pawn.pawnMaxCooldown)
 ,cooldownBar(pawn.cooldownBar)
 ,pawnCooldownBar(pawn.pawnCooldownBar)
 ,bar(pawn.bar)
