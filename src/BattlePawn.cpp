@@ -8,7 +8,10 @@ Demo::BattlePawn::BattlePawn()
 ,emptySpace(true)
 ,selfLocation("",PointU(0,0))
 ,pawnSize(0,0)
+,pawnCooldown(0.0)
+,pawnMaxCooldown(0.0)
 ,cooldownBar(PointU(0,0))
+,pawnCooldownBar(PointU(0,0))
 ,bar()
 {
 	position = PointU(0,0);
@@ -16,6 +19,8 @@ Demo::BattlePawn::BattlePawn()
 	
 	cooldownBar.SetColor(0,0,0,50);
 	cooldownBar.SetRotation(270);
+	
+	pawnCooldownBar.SetColor(255,255,255,150);
 	
 	UpdateAbilityDisplay();
 	UpdateEffectGraphicDisplay();
@@ -33,6 +38,7 @@ Demo::BattlePawn::BattlePawn(const BattlePawn& pawn)
 ,displayAbilities(pawn.displayAbilities)
 ,pawnSize(pawn.pawnSize)
 ,cooldownBar(pawn.cooldownBar)
+,pawnCooldownBar(pawn.pawnCooldownBar)
 ,bar(pawn.bar)
 {
 	for(auto& i : pawn.abilities)
@@ -64,6 +70,7 @@ Demo::BattlePawn& Demo::BattlePawn::operator=(const BattlePawn& pawn)
 	this->selfLocation = pawn.selfLocation;
 	this->bar = pawn.bar;
 	this->cooldownBar = pawn.cooldownBar;
+	this->pawnCooldownBar = pawn.pawnCooldownBar;
 	this->healths = pawn.healths;
 	this->pawnSize = pawn.pawnSize;
 	this->displayAbilities = pawn.displayAbilities;
@@ -82,6 +89,8 @@ void Demo::BattlePawn::Update(double delta)
 		i.second.Update(delta);
 	for(auto& i : effects)
 		i->BattleUpdate(delta,this);
+	
+	UpdatePawnCooldown(delta);
 	
 	if(abilities.size() > 0)
 	{
@@ -118,6 +127,9 @@ void Demo::BattlePawn::Draw(const Canvas& canvas) const
 	
 	if(abilities.size() > 0)
 		cooldownBar.Draw(canvas);
+	
+	if(pawnCooldown > 0.0)
+		pawnCooldownBar.Draw(canvas);
 	
 	if(displayAbilities != Ability::DisplayMode::None)
 		for(auto i = abilities.begin()+1; i != abilities.end(); ++i)
@@ -304,11 +316,51 @@ std::vector<int>& Demo::BattlePawn::GetDamageToDisplay()
 	return damageToDisplay;
 }
 
+void Demo::BattlePawn::UpdatePawnCooldown(const double& delta)
+{
+	if(pawnCooldown > 0.0)
+	{
+		pawnCooldown -= delta;
+		
+		if(pawnCooldown <= 0.0)
+			pawnCooldown = 0.0;
+			
+		if(pawnMaxCooldown == 0.0)
+			pawnMaxCooldown = 1.0;
+			
+		double percentage = pawnCooldown*100.0/pawnMaxCooldown;
+		pawnCooldownBar.SetPercentage(percentage);
+		for(auto& i : abilities)
+			i->SetPawnCooldownPercentage(percentage);
+	}
+}
+
+void Demo::BattlePawn::IncreasePawnCooldown(const double& cooldown)
+{
+	if(pawnCooldown == 0.0)
+	{
+		pawnCooldown = cooldown;
+		pawnMaxCooldown = cooldown;
+		return;
+	}
+	if(pawnCooldown + cooldown < pawnMaxCooldown)
+	{
+		pawnCooldown += cooldown;
+		return;
+	}
+	else
+	{
+		pawnCooldown += cooldown;
+		pawnMaxCooldown += cooldown;
+	}
+}
+
 void Demo::BattlePawn::SetPosition(const PointU& pos)
 {
 	GameObject::SetPosition(pos);
 	bar.SetPosition(PointU(pos.x,pos.y));
 	cooldownBar.SetPosition(PointU(pos.x,pos.y));
+	pawnCooldownBar.SetPosition(PointU(pos.x,pos.y));
 	
 	unsigned int i = 1;
 	PointU size = bar.GetSize();
@@ -387,6 +439,7 @@ void Demo::BattlePawn::SetSize(const PointU& size)
 	pawnSize = size;
 	bar.SetSize(size);
 	cooldownBar.SetSize(size);
+	pawnCooldownBar.SetSize(size);
 	for(auto& i : healths)
 	{
 		i.second.SetSize(PointU((unsigned int)(size.x*0.8),(unsigned int)(size.y*0.05)));
@@ -596,4 +649,3 @@ void Demo::BattlePawn::UpdateDefaultAbilityInfo()
 		}
 	}
 }
-

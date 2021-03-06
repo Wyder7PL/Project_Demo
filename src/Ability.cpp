@@ -5,11 +5,16 @@
 #include <sstream>
 
 Demo::Ability::Ability()
-:cooldown(0.0),maxCooldown(1.0),background(PointU(0,0)),cooldownBar(PointU(0,0))
+:cooldown(0.0)
+,maxCooldown(1.0)
+,background(PointU(0,0))
+,cooldownBar(PointU(0,0))
+,pawnCooldownBar(PointU(0,0))
 {
-	background.SetColor(255,255,255,200);
+	background.SetColor(128,128,128,200);
 	cooldownBar.SetColor(0,0,0,150);
 	cooldownBar.SetRotation(270);
+	pawnCooldownBar.SetColor(255,255,255,150);
 }
 
 Demo::Ability::~Ability()
@@ -27,12 +32,13 @@ void Demo::Ability::Draw(const Canvas& canvas) const
 	background.Draw(canvas);
 	sprite.Draw(canvas);
 	cooldownBar.Draw(canvas);
+	pawnCooldownBar.Draw(canvas);
 }
 
 std::vector<Demo::Action> Demo::Ability::Use(const Location& destination, bool targetingEnemy)
 {
 	std::vector<Demo::Action> result;
-	if(cooldown == 0.0)
+	if(cooldown == 0.0 && !pawnCooldownLock)
 	{
 		result.push_back(ConstructAction(destination, targetingEnemy));
 		cooldown += maxCooldown;
@@ -67,9 +73,15 @@ double Demo::Ability::GetCooldown()
 	return cooldown;
 }
 
+void Demo::Ability::SetPawnCooldownPercentage(const double& percentage)
+{
+	pawnCooldownBar.SetPercentage(percentage);
+	pawnCooldownLock = (percentage > 0.0);
+}
+
 void Demo::Ability::ReduceCooldown(double amount)
 {
-	if(IsCoolingDown())
+	if(IsCoolingDown() && !pawnCooldownLock)
 	{
 		cooldown -= amount;
 		if(cooldown <= 0.0)
@@ -161,6 +173,7 @@ void Demo::Ability::SetDisplayPosition(const PointU& pos)
 	background.SetPosition(pos);
 	sprite.SetPosition(pos);
 	cooldownBar.SetPosition(pos);
+	pawnCooldownBar.SetPosition(pos);
 }
 
 Demo::PointU Demo::Ability::GetDisplayPosition()
@@ -173,6 +186,7 @@ void Demo::Ability::SetDisplaySize(const PointU& size)
 	background.SetSize(size);
 	sprite.SetSize(size);
 	cooldownBar.SetSize(size);
+	pawnCooldownBar.SetSize(size);
 }
 
 Demo::PointU Demo::Ability::GetDisplaySize()

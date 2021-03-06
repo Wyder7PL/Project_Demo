@@ -49,6 +49,8 @@ class Ability
 	void SetCooldown(double amount);
 	double GetCooldown();
 	
+	void SetPawnCooldownPercentage(const double& percentage);
+	
 	void ReduceCooldown(double amount);
 	void ResetCooldown();
 	void IncreaseCooldown(double amount);
@@ -89,8 +91,10 @@ protected:
 private:
 	Bar background;
 	Bar cooldownBar;
+	Bar pawnCooldownBar;
 	
 	bool wasCoolingDown = false;
+	bool pawnCooldownLock = false;
 };
 
 }

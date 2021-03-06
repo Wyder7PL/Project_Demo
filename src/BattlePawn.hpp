@@ -58,6 +58,9 @@ public:
 	void SetHP(const std::string& healthType, int value);
 	std::vector<int>& GetDamageToDisplay();
 	
+	void UpdatePawnCooldown(const double& delta);
+	void IncreasePawnCooldown(const double& cooldown);
+	
 	virtual void SetPosition(const PointU& pos) override;
 	PointU GetPosition(const unsigned int abilityIndex = 0);
 	
@@ -106,7 +109,11 @@ private:
 	std::vector<Action> actionBuffer;
 	std::vector<int> damageToDisplay;
 	
+	double pawnCooldown;
+	double pawnMaxCooldown;
+	
 	Bar cooldownBar;
+	Bar pawnCooldownBar;
 	Sprite bar;
 };
 
