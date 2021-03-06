@@ -15,6 +15,7 @@ Demo::Ability::Ability()
 	cooldownBar.SetColor(0,0,0,150);
 	cooldownBar.SetRotation(270);
 	pawnCooldownBar.SetColor(255,255,255,150);
+	pawnCooldownBar.SetPercentage(0.0);
 }
 
 Demo::Ability::~Ability()
