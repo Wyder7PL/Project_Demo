@@ -5,6 +5,7 @@
 #include "graphic/Canvas.hpp"
 #include "Location.hpp"
 #include "Action.hpp"
+#include "effects/WatcherEffect.hpp"
 
 #include <vector>
 #include <memory>
@@ -45,15 +46,18 @@ namespace Demo
 	protected:
 		BattleData data;
 		std::vector<std::unique_ptr<Controller>> controllers;
+		std::vector<std::unique_ptr<WatcherEffect>> watchers;
 		
 
 	private:
 		void UpdateDamageDisplay(const double& delta);
+		void UpdateWatchers(const double& delta);
 		
 		void ExtractActionsFromPawns();
 		void ManageActions();
 		void ManageSingleAction(const Action& action);
 		void ManageAreaEffectActions(const Action& action);
+		void CreateWatcherFromAction(const Action& action);
 		void RemoveDestroyedPawns();
 		
 		bool IsActionAreaEffect(const Action& action);

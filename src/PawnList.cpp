@@ -169,6 +169,7 @@ Demo::ActionRange ToActionRange(const std::string& str)
 	if(str == "self") return ActionRange::Self;
 	if(str == "aof") return ActionRange::AllOnFloor;
 	if(str == "aofec") return ActionRange::AllOnFloorExceptCaster;
+	if(str == "watcher") return ActionRange::Watcher;
 	return ActionRange::Point;
 }
 

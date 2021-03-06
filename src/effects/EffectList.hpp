@@ -2,6 +2,7 @@
 
 #include "Effect.hpp"
 #include "BattleEffect.hpp"
+#include "WatcherEffect.hpp"
 
 #include <memory>
 #include <vector>
@@ -21,6 +22,7 @@ public:
 	void LoadDefault();
 	
 	std::vector<std::unique_ptr<Effect>> CreateEffect(const std::string name,const std::vector<double>& args) const;
+	std::vector<std::unique_ptr<WatcherEffect>> CreateWatcherEffect(const std::string name, BattleData* data ,const std::vector<double>& args);
 	
 private:
 	void Load(Effect*);

@@ -20,7 +20,8 @@ namespace Demo
 		None,
 		Self,
 		AllOnFloor,
-		AllOnFloorExceptCaster
+		AllOnFloorExceptCaster,
+		Watcher
 	};
 	
 	enum class ActionIntentions

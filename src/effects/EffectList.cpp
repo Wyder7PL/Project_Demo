@@ -11,6 +11,8 @@
 #include "Prepare.hpp"
 #include "Shield.hpp"
 
+#include "ElectricChain.hpp"
+
 #include <iostream>
 
 Demo::EffectList& Demo::EffectList::GetInstance()
@@ -44,6 +46,13 @@ std::vector<std::unique_ptr<Demo::Effect>> Demo::EffectList::CreateEffect(const 
 		std::unique_ptr<Effect> ptr((*iter).second->Clone(args));
 		result.push_back(std::move(ptr));
 	}
+	return result;
+}
+
+std::vector<std::unique_ptr<Demo::WatcherEffect>> Demo::EffectList::CreateWatcherEffect(const std::string name, BattleData* data ,const std::vector<double>& args)
+{
+	std::vector<std::unique_ptr<WatcherEffect>> result;
+	if(name == "ElectricChain") result.push_back(std::make_unique<ElectricChain>(data,args));
 	return result;
 }
 

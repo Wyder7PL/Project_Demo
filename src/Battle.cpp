@@ -38,6 +38,8 @@ void Demo::Battle::Update(double delta)
 		for(auto i = data.floors.begin();i != data.floors.end();i++)
 			(*i).second.Update(updateDelta);
 		
+		UpdateWatchers(delta);
+		
 		UpdateDamageDisplay(updateDelta);
 		
 		ExtractActionsFromPawns();
@@ -120,6 +122,19 @@ void Demo::Battle::UpdateDamageDisplay(const double& delta)
 		dd.pop_front();
 }
 
+void Demo::Battle::UpdateWatchers(const double& delta)
+{
+	for(auto i = watchers.begin(); i != watchers.end();)
+	{
+		if((*i)->ToDestroy())
+			i = watchers.erase(i);
+		else
+		{
+			(*i)->WatcherUpdate(delta);
+			++i;
+		}
+	}
+}
 
 void Demo::Battle::ExtractActionsFromPawns()
 {
@@ -137,6 +152,9 @@ void Demo::Battle::ManageActions()
 		for(auto j = i.begin(); j != i.end(); ++j)
 		{
 			Action& action = (*j);
+			if( action.aRange == ActionRange::Watcher)
+				CreateWatcherFromAction(action);
+			
 			if( action.aRange == ActionRange::Point || action.aRange == ActionRange::Frontline || action.aRange == ActionRange::Self)
 				ManageSingleAction(action);
 			
@@ -241,6 +259,44 @@ void Demo::Battle::ManageAreaEffectActions(const Action& action)
 			temp.location = Location(action.location.GetFloor(), PointU(shiftedPoint.x,shiftedPoint.y));
 			ManageSingleAction(temp);
 		}
+	}
+}
+
+void Demo::Battle::CreateWatcherFromAction(const Action& action)
+{
+	std::istringstream stream;
+	stream.str(action.actionData);
+	
+	std::string watcherName;
+	std::vector<double> args;
+	
+	char separator = '|';
+	while(stream.good() && !stream.eof() && separator == '|')
+	{
+		stream >> watcherName;
+		
+		char ch = ' ';
+		while(stream.get(ch))
+		{
+			if(ch == ' ') continue;
+			if(isdigit(ch) || ch == '.')
+			{
+				stream.putback(ch);
+				double d;
+				stream >> d;
+				args.push_back(std::move(d));
+				continue;
+			}
+			if(ch == separator)
+				break;
+		}
+	}
+	std::vector<std::unique_ptr<WatcherEffect>> vec = EffectList::GetInstance().CreateWatcherEffect(watcherName,&data,args);
+	for(auto& i : vec)
+	{
+		i->SetDestination(action.location);
+		i->SetCreatorLocation(action.creatorLocation);
+		watchers.push_back(std::move(i));
 	}
 }
 

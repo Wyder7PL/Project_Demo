@@ -1,6 +1,6 @@
 #pragma once
 
-#include "WatcherEffect.hpp" // Base class: Demo::WatcherEffect
+#include "WatcherEffect.hpp"
 
 namespace Demo
 {
@@ -8,13 +8,21 @@ namespace Demo
 class ElectricChain : public Demo::WatcherEffect
 {
 public:
-	ElectricChain();
+	ElectricChain(BattleData* data, const std::vector<double>& args);
 	virtual ~ElectricChain();
 
-public:
-	virtual
-void watcherUpdate(const double& delta);
+	virtual void WatcherUpdate(const double& delta) override;
+	
+private:
+	void SetPotentialTargets();
+	void ApplyElectricityToPawn(BattlePawn& target);
+	
+	int electricityVoltage;
+	int electricityIntensity;
+	unsigned int targetsLeft;
+	
+	std::vector<PointU> potentialTargets;
+	std::vector<PointU> hittedTargets;
 };
 
 }
-
