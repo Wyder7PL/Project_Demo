@@ -4,6 +4,9 @@
 #include "Sprite.hpp"
 #include "Text.hpp"
 
+#include <sstream>
+#include <cassert>
+
 
 namespace Demo
 {

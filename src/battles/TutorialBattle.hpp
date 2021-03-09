@@ -3,6 +3,9 @@
 #include "../Battle.hpp" 
 #include "../controllers/TutorialController.hpp"
 
+#include "../graphic/TextureHolder.hpp"
+#include "../graphic/Sprite.hpp"
+
 namespace Demo
 {
 

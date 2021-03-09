@@ -6,6 +6,12 @@
 #include "Location.hpp"
 #include "Action.hpp"
 #include "effects/WatcherEffect.hpp"
+#include "controllers/PlayerController.hpp"
+
+#include "effects/EffectList.hpp"
+#include "PawnList.hpp"
+
+#include <algorithm>
 
 #include <vector>
 #include <memory>

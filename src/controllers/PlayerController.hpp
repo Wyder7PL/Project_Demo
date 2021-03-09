@@ -3,6 +3,14 @@
 #include "../input/Input.hpp"
 #include "Controller.hpp"
 
+#include "../PawnList.hpp"
+#include "../graphic/Button.hpp"
+#include "../graphic/DefaultAbilityDamageDisplay.hpp"
+
+#include "../effects/DefaultDamageAdsorption.hpp"
+#include "../effects/DefaultDamageBooster.hpp"
+#include "../effects/Poison.hpp"
+
 #include <memory>
 #include <sstream>
 #include <math.h>

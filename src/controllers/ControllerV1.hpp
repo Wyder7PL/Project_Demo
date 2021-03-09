@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Controller.hpp"
+#include "../PawnList.hpp"
 
 namespace Demo
 {

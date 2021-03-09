@@ -1,17 +1,5 @@
 #include "PawnList.hpp"
 
-#include "effects/EffectList.hpp"
-#include "graphic/TextureHolder.hpp"
-#include "EnergyBar.hpp"
-#include "abilities/GenericAbility.hpp"
-#include "abilities/SummonAbility.hpp"
-
-#include "abilities/TestAbility.hpp"
-
-#include <fstream>
-#include <filesystem>
-#include <iostream>
-
 
 Demo::PawnList& Demo::PawnList::GetInstance()
 {

@@ -1,8 +1,5 @@
 #include "TextureHolder.hpp"
 
-#include <SFML/Graphics.hpp>
-#include <filesystem>
-
 Demo::TextureHolder& Demo::TextureHolder::GetInstance()
 {
 	static TextureHolder result;

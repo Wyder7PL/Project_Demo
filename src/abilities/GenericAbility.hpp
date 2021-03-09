@@ -3,6 +3,7 @@
 #include "../Ability.hpp"
 
 #include <vector>
+#include <sstream>
 
 namespace Demo
 {

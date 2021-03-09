@@ -1,11 +1,12 @@
 #pragma once
 
-#include <vector>
-
 #include "Utility.hpp"
 #include "graphic/Canvas.hpp"
 #include "graphic/DamageDisplay.hpp"
 #include "BattlePawn.hpp"
+
+#include <vector>
+#include <iostream>
 
 namespace Demo
 {

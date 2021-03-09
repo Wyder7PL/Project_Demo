@@ -5,6 +5,9 @@
 #include "graphic/Sprite.hpp"
 #include "graphic/Bar.hpp"
 
+#include "graphic/TextureHolder.hpp"
+
+#include <sstream>
 #include <vector>
 
 namespace Demo

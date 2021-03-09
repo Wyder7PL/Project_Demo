@@ -1,7 +1,5 @@
 #include "BattlePawn.hpp"
-//#include "abilities/DefaultStrike.hpp"
 
-#include <sstream>
 
 Demo::BattlePawn::BattlePawn()
 :toDestroy(false)

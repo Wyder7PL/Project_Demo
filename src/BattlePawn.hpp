@@ -11,6 +11,8 @@
 #include "EnergyBar.hpp"
 #include "effects/BattleEffect.hpp"
 
+#include <sstream>
+
 #include <memory>
 #include <vector>
 #include <map>
