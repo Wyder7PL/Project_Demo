@@ -1,9 +1,9 @@
-#include "src/battles/MenuBattle.hpp"
-#include "src/graphic/Window.hpp"
-#include "src/input/PlayerInput.hpp"
-#include "src/effects/EffectList.hpp"
-#include "src/graphic/TextureHolder.hpp"
-#include "src/PawnList.hpp"
+#include "battles/MenuBattle.hpp"
+#include "graphic/Window.hpp"
+#include "input/PlayerInput.hpp"
+#include "effects/EffectList.hpp"
+#include "graphic/TextureHolder.hpp"
+#include "PawnList.hpp"
 
 #include <chrono>
 #include <memory>
