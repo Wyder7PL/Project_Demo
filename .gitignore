@@ -3,7 +3,7 @@
 Demo
 .Demo
 ./Demo
-Makefile
+build
 obj
 .codelite/
 copycode.txt
