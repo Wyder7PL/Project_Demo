@@ -1,5 +1,13 @@
 #include "PawnList.hpp"
 
+#include <iostream>
+#include <fstream>
+
+#if defined(__linux__)
+	#include <filesystem>
+#elif defined(_WIN32)
+	#include <windows.h>
+#endif
 
 Demo::PawnList& Demo::PawnList::GetInstance()
 {
@@ -9,29 +17,56 @@ Demo::PawnList& Demo::PawnList::GetInstance()
 
 void Demo::PawnList::LoadDefault()
 {
-	namespace fs = std::filesystem;
-	fs::path p = fs::current_path();
-	p /= "resources";
-	p /= "pawns";
-	
-	for (const auto& entry : fs::directory_iterator(p))
-	{
-		if(fs::is_regular_file(entry.status()))
+	#if defined(__linux__)
+		namespace fs = std::filesystem;
+		fs::path p = fs::current_path();
+		p /= "resources";
+		p /= "pawns";
+		
+		for (const auto& entry : fs::directory_iterator(p))
 		{
-			std::string extension = entry.path().extension();
-			if(extension == ".txt")
+			if(fs::is_regular_file(entry.status()))
 			{
-				std::string relativePath = entry.path().relative_path();
-				std::string filepath = "resources/pawns/";
-				filepath += entry.path().filename();
-				std::string name = entry.path().stem();
-				
-				defaultName = true;
-				pawnSpriteName = "";
-				LoadPawnFromFile(filepath,name);
+				std::string extension = entry.path().extension();
+				if(extension == ".txt")
+				{
+					std::string relativePath = entry.path().relative_path();
+					std::string filepath = "resources/pawns/";
+					filepath += entry.path().filename();
+					std::string name = entry.path().stem();
+					
+					defaultName = true;
+					pawnSpriteName = "";
+					LoadPawnFromFile(filepath,name);
+				}
 			}
 		}
-	}
+	
+	#elif defined(_WIN32)
+		WIN32_FIND_DATA FindFileData;
+		HANDLE hFind = FindFirstFile("resources\\pawns\\*.txt", &FindFileData);
+		if (hFind == INVALID_HANDLE_VALUE) {
+			std::cout << "Could not open FirstFile\n";
+			return;
+		}
+
+		do {
+			std::string name = FindFileData.cFileName;
+			if (FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+				continue;
+			else if(name.length() > 4)
+			{
+				std::string ext = name.substr(name.length()-4,4);
+				if( ext == ".txt")
+				{
+					std::string nameNoExt = name.substr(0,name.length()-4);
+					LoadPawnFromFile("resources\\pawns\\"+name,nameNoExt);
+				}
+			}
+		} while (FindNextFile(hFind, &FindFileData) != 0);
+		FindClose(hFind);
+	#endif
+	
 	LoadCustom();
 }
 
