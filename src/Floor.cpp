@@ -1,5 +1,7 @@
 #include "Floor.hpp"
 
+#include <iostream>
+
 Demo::Floor::Floor(const PointU& dimension)
 :dimensions(dimension)
 ,location(PointU(0,0))
@@ -19,7 +21,7 @@ Demo::Floor::Floor(const PointU& dimension)
 Demo::Floor::~Floor()
 {
 }
-#include <iostream>
+
 void Demo::Floor::Update(double delta)
 {
 	damageToDisplay.clear();

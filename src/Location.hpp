@@ -2,8 +2,6 @@
 
 #include "Utility.hpp"
 
-#include <string>
-
 namespace Demo
 {
 

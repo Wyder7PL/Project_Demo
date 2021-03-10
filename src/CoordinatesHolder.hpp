@@ -3,7 +3,6 @@
 #include "Utility.hpp"
 
 #include <vector>
-#include <algorithm>
 
 namespace Demo
 {

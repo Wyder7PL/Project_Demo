@@ -1,5 +1,6 @@
 #include "BattlePawn.hpp"
 
+#include <sstream>
 
 Demo::BattlePawn::BattlePawn()
 :toDestroy(false)

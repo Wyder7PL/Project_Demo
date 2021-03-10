@@ -12,8 +12,6 @@
 #include "../effects/Poison.hpp"
 
 #include <memory>
-#include <sstream>
-#include <math.h>
 
 namespace Demo
 {

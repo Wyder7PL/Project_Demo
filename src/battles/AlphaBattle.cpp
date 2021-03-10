@@ -1,7 +1,5 @@
 #include "AlphaBattle.hpp"
 
-#include "../controllers/ControllerV1.hpp"
-
 Demo::AlphaBattle::AlphaBattle()
 {
 	data.floors["PlayerFloor"] = Floor();

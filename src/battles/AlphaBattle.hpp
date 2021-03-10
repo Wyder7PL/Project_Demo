@@ -2,6 +2,8 @@
 
 #include "../Battle.hpp"
 
+#include "../controllers/ControllerV1.hpp"
+
 namespace Demo
 {
 

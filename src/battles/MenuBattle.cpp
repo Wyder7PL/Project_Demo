@@ -1,8 +1,5 @@
 #include "MenuBattle.hpp"
 
-#include "TutorialBattle.hpp"
-#include "AlphaBattle.hpp"
-
 Demo::MenuBattle::MenuBattle()
 :controllerIsSet(false)
 ,battleSet(false)

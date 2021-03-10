@@ -1,11 +1,7 @@
 #include "PlayerController.hpp"
-#include "../PawnList.hpp"
-#include "../graphic/Button.hpp"
-#include "../graphic/DefaultAbilityDamageDisplay.hpp"
 
-#include "../effects/DefaultDamageAdsorption.hpp"
-#include "../effects/DefaultDamageBooster.hpp"
-#include "../effects/Poison.hpp"
+#include <sstream>
+#include <math.h>
 
 Demo::PlayerController::PlayerController(BattleData* data,std::weak_ptr<Input> input)
 :Controller(data),inputHandle(input),arrowBegin(0,0),arrowIsUsed(false),attackPawn("",PointU(0,0)),justPressed(true)

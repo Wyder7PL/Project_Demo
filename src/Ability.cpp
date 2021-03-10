@@ -1,7 +1,5 @@
 #include "Ability.hpp"
 
-#include "graphic/TextureHolder.hpp"
-
 #include <sstream>
 
 Demo::Ability::Ability()

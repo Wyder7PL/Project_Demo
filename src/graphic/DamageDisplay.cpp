@@ -1,4 +1,5 @@
 #include "DamageDisplay.hpp"
+
 #include <sstream>
 #include <cassert>
 

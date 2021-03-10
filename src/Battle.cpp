@@ -1,9 +1,7 @@
 #include "Battle.hpp"
-#include "controllers/PlayerController.hpp"
 
-#include "effects/EffectList.hpp"
-#include "PawnList.hpp"
-
+#include <chrono>
+#include <sstream>
 #include <algorithm>
 
 Demo::Battle::Battle()

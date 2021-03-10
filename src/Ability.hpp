@@ -7,7 +7,6 @@
 
 #include "graphic/TextureHolder.hpp"
 
-#include <sstream>
 #include <vector>
 
 namespace Demo
@@ -19,10 +18,9 @@ namespace Demo
 	
 	
 class Ability
-{	public:
+{
+	public:
 
-	
-	
 	enum class DisplayMode{
 		None,
 		JustDraw,

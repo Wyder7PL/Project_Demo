@@ -1,4 +1,5 @@
 #include "CoordinatesHolder.hpp"
+#include <algorithm>
 
 void Demo::CoordinatesHolder::Update(double delta)
 {

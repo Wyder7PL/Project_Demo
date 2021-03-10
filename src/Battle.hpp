@@ -11,12 +11,8 @@
 #include "effects/EffectList.hpp"
 #include "PawnList.hpp"
 
-#include <algorithm>
-
 #include <vector>
 #include <memory>
-#include <chrono>
-#include <sstream>
 
 
 #include "input/PlayerInput.hpp"

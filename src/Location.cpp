@@ -1,5 +1,7 @@
 #include "Location.hpp"
 
+#include <string>
+
 Demo::Location::Location(const std::string& floor, const unsigned int& x, const unsigned int& y)
 :floorIndex(floor), onFloorLocation(x,y)
 {

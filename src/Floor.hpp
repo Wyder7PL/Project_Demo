@@ -6,7 +6,6 @@
 #include "BattlePawn.hpp"
 
 #include <vector>
-#include <iostream>
 
 namespace Demo
 {

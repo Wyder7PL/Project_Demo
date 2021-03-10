@@ -5,7 +5,6 @@
 #include <unordered_map>
 
 #include <SFML/Graphics.hpp>
-#include <filesystem>
 
 
 namespace Demo

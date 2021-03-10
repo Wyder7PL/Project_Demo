@@ -3,6 +3,9 @@
 #include "../Battle.hpp" 
 #include "../controllers/MenuController.hpp"
 
+#include "TutorialBattle.hpp"
+#include "AlphaBattle.hpp"
+
 namespace Demo
 {
 

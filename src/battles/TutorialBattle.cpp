@@ -1,8 +1,5 @@
 #include "TutorialBattle.hpp"
 
-#include "../graphic/TextureHolder.hpp"
-#include "../graphic/Sprite.hpp"
-
 Demo::TutorialBattle::TutorialBattle()
 :phase(0)
 ,beforeEnd(5.0)

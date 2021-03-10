@@ -4,6 +4,13 @@
 #include "../input/Input.hpp"
 #include "../CoordinatesHolder.hpp"
 
+#include "../PawnList.hpp"
+#include "../effects/EffectList.hpp"
+#include "../graphic/Sprite.hpp"
+#include "../graphic/TextureHolder.hpp"
+#include "../abilities/GenericAbility.hpp"
+#include "../abilities/SummonAbility.hpp"
+
 namespace Demo
 {
 	

@@ -1,5 +1,4 @@
 #include "ControllerV1.hpp"
-#include "../PawnList.hpp"
 
 Demo::ControllerV1::ControllerV1(BattleData* data)
 :Controller(data)
