@@ -1,5 +1,7 @@
 #include "TextureHolder.hpp"
 
+#include <iostream>
+
 #if defined(__linux__)
 	#include <filesystem>
 #elif defined(_WIN32)
