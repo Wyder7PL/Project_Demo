@@ -226,6 +226,7 @@ void Demo::TutorialController::LoadSecondPhase()
 	
 	BattlePawn TESTPawn1;
 	PawnList::GetInstance().OverridePawn("OtterSwordman",TESTPawn1);
+	TESTPawn1.SetPawnDodge(10000);
 	battleDataPtr->floors["Enemy"].AddPawnAtLocation(std::move(TESTPawn1),PointU(0,0));
 	
 	PointU pathBegin(450,150), pathEnd(800,160);
@@ -264,6 +265,7 @@ void Demo::TutorialController::LoadThirdPhase()
 	BattlePawn TESTPawn1;
 	PawnList::GetInstance().OverridePawn("OtterSwordman",TESTPawn1);
 	TESTPawn1.SetHP("Pain",3);
+	TESTPawn1.SetPawnDodge(10000);
 	battleDataPtr->floors["Enemy"].AddPawnAtLocation(std::move(TESTPawn1),PointU(0,0));
 	
 	battleDataPtr->graphics["Cursor"]->SetVisibility(false);
@@ -280,10 +282,12 @@ void Demo::TutorialController::LoadFourthPhase()
 	
 	BattlePawn TESTPawn;
 	PawnList::GetInstance().OverridePawn("OtterWarrior",TESTPawn);
+	TESTPawn.SetPawnDodge(10000);
 	battleDataPtr->floors["Player"].AddPawnAtLocation(std::move(TESTPawn),PointU(0,0));
 	
 	BattlePawn TESTPawn1;
 	PawnList::GetInstance().OverridePawn("OtterSwordman",TESTPawn1);
+	TESTPawn1.SetPawnDodge(10000);
 	battleDataPtr->floors["Enemy"].AddPawnAtLocation(std::move(TESTPawn1),PointU(0,0));
 	
 	BattlePawn TESTPawn2;
@@ -342,6 +346,7 @@ void Demo::TutorialController::LoadFifthPhase()
 	for(auto& i : vec)
 		tankPawn.AddEffect(std::move(std::unique_ptr<BattleEffect>(dynamic_cast<BattleEffect*>(i.release()))));
 	
+	tankPawn.SetPawnDodge(10000);
 	battleDataPtr->floors["Enemy"].AddPawnAtLocation(std::move(tankPawn),PointU(0,0));
 	
 	BattlePawn TESTPawn;
@@ -417,6 +422,7 @@ void Demo::TutorialController::LoadSixthPhase()
 	
 	BattlePawn TESTPawn2;
 	PawnList::GetInstance().OverridePawn("OtterArcher",TESTPawn2);
+	TESTPawn2.SetPawnDodge(10000);
 	battleDataPtr->floors["Enemy"].AddPawnAtLocation(std::move(TESTPawn2),PointU(1,0));
 	
 	PointU pathBegin(450,150), secondPathBegin(220,200), pathEnd(970,160);
@@ -482,6 +488,8 @@ void Demo::TutorialController::LoadSeventhPhase()
 	auto vec = EffectList::GetInstance().CreateEffect("Adsorption",{2});
 	for(auto& i : vec)
 		tankPawn.AddEffect(std::move(std::unique_ptr<BattleEffect>(dynamic_cast<BattleEffect*>(i.release()))));
+	
+	tankPawn.SetPawnDodge(10000);
 	battleDataPtr->floors["Enemy"].AddPawnAtLocation(std::move(tankPawn),PointU(0,0));
 	
 	PointU pathBegin1(460,520), pathBegin2(400,520), secondPathBegin(440,200), pathEnd(800,160);
@@ -584,6 +592,7 @@ void Demo::TutorialController::LoadEighthPhase()
 		ability->SetAbilityRange(ActionRange::Point);
 		medicPawn.AddAbility(std::move(std::unique_ptr<Ability>(dynamic_cast<Ability*>(ability.release()))));
 	}
+	medicPawn.SetPawnDodge(10000);
 	battleDataPtr->floors["Enemy"].AddPawnAtLocation(std::move(medicPawn),PointU(1,0));
 	
 	BattlePawn tankPawn;
