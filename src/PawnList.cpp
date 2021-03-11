@@ -196,6 +196,32 @@ Demo::ActionRange ToActionRange(const std::string& str)
 	return ActionRange::Point;
 }
 
+void SetAbilityDodge(std::unique_ptr<GenericAbility>& ability,std::ifstream& file)
+{
+	unsigned int accval = 10;
+	bool randomize = false;
+	char c = file.get();
+	while(c != '>' && file.good())
+	{
+		c = file.get();
+		if(c == '>')
+			break;
+		if(isdigit(c))
+		{
+			file.putback(c);
+			file >> accval;
+		}
+		else if(c == 'r')
+			randomize = true;
+	}
+	
+	
+	Accuracy acc(accval);
+	if(randomize)
+		acc.RandomizePreciseHitCount();
+	ability->SetNewAccuracy(acc);
+}
+
 void AddAbilityToPawn(BattlePawn& pawn,std::ifstream& file)
 {
 	std::unique_ptr<GenericAbility> ability = std::make_unique<GenericAbility>();
@@ -220,6 +246,10 @@ void AddAbilityToPawn(BattlePawn& pawn,std::ifstream& file)
 			else if(temp == "damage")
 			{
 				ability->AddDamageToAbility(LoadToString(file));
+			}
+			else if(temp == "accuracy")
+			{
+				SetAbilityDodge(ability,file);
 			}
 		}
 		if(c == '*')
@@ -259,7 +289,39 @@ void AddSummonAbilityToPawn(BattlePawn& pawn,std::ifstream& file)
 	pawn.AddAbility(std::move(ptr));
 }
 
+void SetPawnDodge(BattlePawn& pawn, std::ifstream& file)
+{
+	unsigned int dodge = 0, initial = 0;
+	bool setInitial = false;
+	file >> dodge;
+	
+	char c = 0;
+	while(file.good())
+	{
+		file >> c;
+		if(c == '>')
+			break;
+		if(isdigit(c))
+		{
+			file.putback(c);
+			file >> initial;
+			setInitial = true;
+		}
+	}
+	if(setInitial)
+	{
+		pawn.SetPawnDoodge(dodge);
+		pawn.SetPawnInitialDoodge(initial);
+	}
+	else
+	{
+		pawn.SetPawnDoodge(dodge);
+		pawn.RandomizeDodge();
+	}
 }
+
+}
+
 void Demo::PawnList::LoadPawnFromFile(const std::string& filePath,std::string& name)
 {
 	std::ifstream file{filePath};
@@ -294,6 +356,10 @@ void Demo::PawnList::LoadPawnFromFile(const std::string& filePath,std::string& n
 			else if(sentenceType == "summon")
 			{
 				AddSummonAbilityToPawn(pawn,file);
+			}
+			else if(sentenceType == "dodge")
+			{
+				SetPawnDodge(pawn,file);
 			}
 		}
 	}

@@ -35,7 +35,7 @@ void Demo::Electricity::BattleUpdate(double delta, BattlePawn* pawn)
 		{
 			pawn->IncreasePawnCooldown(1.0);
 			if(electricityIntensity > pawnSize)
-				pawn->DealDamage("Pain",electricityIntensity-pawnSize,true);
+				pawn->DealDamage("Pain",electricityIntensity-pawnSize,0,true);
 		}
 		electricityVoltage -= electricityIntensity;
 	}

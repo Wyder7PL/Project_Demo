@@ -31,7 +31,7 @@ void Demo::Fire::BattleUpdate(double delta, BattlePawn* pawn)
 		{
 			if(damage > 1)
 				pawn->DealDamage("Pain",damage-1);
-			pawn->DealDamage("Pain",1,true);
+			pawn->DealDamage("Pain",1,0,true);
 		}
 		else
 			SetToDestroy();

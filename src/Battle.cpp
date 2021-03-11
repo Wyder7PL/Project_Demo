@@ -189,7 +189,7 @@ void Demo::Battle::ManageSingleAction(const Action& action)
 		case Action::ActionType::Default:
 		{
 			if(action.aIntention != ActionIntentions::Support)
-				DealDamageToPawn(action.actionData,action.location);
+				DealDamageToPawn(action.actionData,action.location,action.aAccuracy);
 			else
 				GiveSupportToPawn(action.actionData,action.location);
 			break;
@@ -342,7 +342,7 @@ bool Demo::Battle::IsInFloorRange(const Location& actionLocation, const PointI& 
 	return false;
 }
 
-void Demo::Battle::DealDamageToPawn(const std::string& attackData, const Location& attackLocation)
+void Demo::Battle::DealDamageToPawn(const std::string& attackData, const Location& attackLocation,const unsigned int& accuracy)
 {
 	BattlePawn& pawn = GetPawn(attackLocation);
 	std::istringstream stream;
@@ -354,7 +354,7 @@ void Demo::Battle::DealDamageToPawn(const std::string& attackData, const Locatio
 	while(stream.good() && !stream.eof() && separator == '|')
 	{
 		stream >> hpType >> amount >> separator;
-		pawn.DealDamage(hpType,amount);
+		pawn.DealDamage(hpType,amount,accuracy);
 	}
 }
 

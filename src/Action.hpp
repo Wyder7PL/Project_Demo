@@ -77,6 +77,7 @@ public:
 	ActionType aType;
 	ActionIntentions aIntention;
 	ActionRange aRange = ActionRange::Point;
+	unsigned int aAccuracy;
 	std::string actionData;
 	bool defaultAction;
 	

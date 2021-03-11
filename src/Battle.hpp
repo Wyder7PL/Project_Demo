@@ -66,7 +66,7 @@ namespace Demo
 		bool IsAreaEffectHittingPointedLocation(const Action& action);
 		bool IsInFloorRange(const Location& actionLocation,const PointI& shift, PointU& newPoint);
 	
-		void DealDamageToPawn(const std::string& attackData,const Location& attackLocation);
+		void DealDamageToPawn(const std::string& attackData,const Location& attackLocation,const unsigned int& accuracy);
 		void GiveSupportToPawn(const std::string& supportData,const Location& supportLocation);
 		void ApplyEffectToPawn(const std::string& effectData,const Location& effectLocation);
 		void MovePawn(const std::string& data, const Location& from, const Location& to, bool forced = false);

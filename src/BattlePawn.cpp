@@ -7,6 +7,7 @@ Demo::BattlePawn::BattlePawn()
 ,emptySpace(true)
 ,selfLocation("",PointU(0,0))
 ,pawnSize(0,0)
+,dodge(20)
 ,pawnCooldown(0.0)
 ,pawnMaxCooldown(0.0)
 ,cooldownBar(PointU(0,0))
@@ -37,6 +38,7 @@ Demo::BattlePawn::BattlePawn(const BattlePawn& pawn)
 ,selfLocation(pawn.selfLocation)
 ,displayAbilities(pawn.displayAbilities)
 ,pawnSize(pawn.pawnSize)
+,dodge(pawn.dodge)
 ,pawnCooldown(pawn.pawnCooldown)
 ,pawnMaxCooldown(pawn.pawnMaxCooldown)
 ,cooldownBar(pawn.cooldownBar)
@@ -264,7 +266,7 @@ void Demo::BattlePawn::OrderToMove(Location moveDestination, bool forced)
 	}
 }
 
-void Demo::BattlePawn::DealDamage(const std::string& healthType, const int& amount, const bool& ignoreResistances)
+void Demo::BattlePawn::DealDamage(const std::string& healthType, const int& amount,const unsigned int& accuracy, const bool& ignoreResistances)
 {
 	
 	DamageModificationInfo info((double)amount,healthType);
@@ -277,6 +279,13 @@ void Demo::BattlePawn::DealDamage(const std::string& healthType, const int& amou
 	
 	if(damage < 0)
 		damage = 0;
+
+	dodge.IncreaseDodge(accuracy);
+	if(dodge.CanDodge())
+	{
+		dodge.ResetDodge();
+		return;
+	}
 
 	try{
 		healths.at(healthType).Increase(-damage);
@@ -317,6 +326,22 @@ std::vector<int>& Demo::BattlePawn::GetDamageToDisplay()
 {
 	return damageToDisplay;
 }
+
+void Demo::BattlePawn::SetPawnDoodge(const unsigned int& newDodge)
+{
+	dodge.SetNewDodge(newDodge);
+}
+
+void Demo::BattlePawn::SetPawnInitialDoodge(const unsigned int& initialDodge)
+{
+	dodge.SetInitialDodge(initialDodge);
+}
+
+void Demo::BattlePawn::RandomizeDodge()
+{
+	dodge.RandomizeDodge();
+}
+
 
 void Demo::BattlePawn::UpdatePawnCooldown(const double& delta)
 {

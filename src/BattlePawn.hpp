@@ -10,6 +10,7 @@
 #include "Location.hpp"
 #include "EnergyBar.hpp"
 #include "effects/BattleEffect.hpp"
+#include "Dodge.hpp"
 
 #include <memory>
 #include <vector>
@@ -53,10 +54,14 @@ public:
 	void OrderToMove(Location moveDestination, bool forced = false);
 	
 	// Applying negative amounts will increase health
-	void DealDamage(const std::string& healthType, const int& amount, const bool& ignoreResistances = false);
+	void DealDamage(const std::string& healthType, const int& amount, const unsigned int& accuracy = 0, const bool& ignoreResistances = false);
 	void GiveSupport(const std::string& healthType, const int& amount);
 	void SetHP(const std::string& healthType, int value);
 	std::vector<int>& GetDamageToDisplay();
+	
+	void SetPawnDoodge(const unsigned int& newDodge);
+	void SetPawnInitialDoodge(const unsigned int& initialDodge);
+	void RandomizeDodge();
 	
 	void UpdatePawnCooldown(const double& delta);
 	void IncreasePawnCooldown(const double& cooldown);
@@ -108,6 +113,8 @@ private:
 	
 	std::vector<Action> actionBuffer;
 	std::vector<int> damageToDisplay;
+	
+	Dodge dodge;
 	
 	double pawnCooldown;
 	double pawnMaxCooldown;

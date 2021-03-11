@@ -117,6 +117,11 @@ bool Demo::Ability::CooldownStatusChanged()
 	return result;
 }
 
+void Demo::Ability::SetNewAccuracy(const Accuracy& newAccuracy)
+{
+	accuracy = newAccuracy;
+}
+
 void Demo::Ability::SetAbilityRange(const ActionRange& newRange)
 {
 	range = newRange;

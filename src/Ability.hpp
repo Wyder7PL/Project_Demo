@@ -2,6 +2,7 @@
 
 #include "Action.hpp"
 #include "Location.hpp"
+#include "Accuracy.hpp"
 #include "graphic/Sprite.hpp"
 #include "graphic/Bar.hpp"
 
@@ -59,6 +60,8 @@ class Ability
 	bool IsCoolingDown();
 	bool CooldownStatusChanged();
 	
+	void SetNewAccuracy(const Accuracy& newAccuracy);
+	
 	void SetAbilityRange(const ActionRange& newRange);
 	ActionRange GetAbilityRange();
 	
@@ -84,6 +87,7 @@ protected:
 	std::string GetRidOfActionIntentionFlag(const std::string& actionData);
 
 	ActionRange range = ActionRange::Point;
+	Accuracy accuracy;
 	double cooldown;
 	double maxCooldown;
 	double defaultAction;

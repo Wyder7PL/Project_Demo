@@ -48,6 +48,7 @@ Demo::Action Demo::GenericAbility::ConstructAction(const Location& destination, 
 	}
 	action.defaultAction = defaultAction;
 	action.aRange = range;
+	action.aAccuracy = accuracy.GetAccuracyPrecise();
 	
 	for(auto& i : abilityEffects)
 	{
