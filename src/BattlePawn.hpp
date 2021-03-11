@@ -60,8 +60,8 @@ public:
 	void SetHP(const std::string& healthType, int value);
 	std::vector<DamageDisplay>& GetDamageToDisplay();
 	
-	void SetPawnDoodge(const unsigned int& newDodge);
-	void SetPawnInitialDoodge(const unsigned int& initialDodge);
+	void SetPawnDodge(const unsigned int& newDodge);
+	void SetPawnInitialDodge(const unsigned int& initialDodge);
 	void RandomizeDodge();
 	
 	void UpdatePawnCooldown(const double& delta);

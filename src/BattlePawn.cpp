@@ -346,12 +346,12 @@ std::vector<Demo::DamageDisplay>& Demo::BattlePawn::GetDamageToDisplay()
 	return damageToDisplay;
 }
 
-void Demo::BattlePawn::SetPawnDoodge(const unsigned int& newDodge)
+void Demo::BattlePawn::SetPawnDodge(const unsigned int& newDodge)
 {
 	dodge.SetNewDodge(newDodge);
 }
 
-void Demo::BattlePawn::SetPawnInitialDoodge(const unsigned int& initialDodge)
+void Demo::BattlePawn::SetPawnInitialDodge(const unsigned int& initialDodge)
 {
 	dodge.SetInitialDodge(initialDodge);
 }

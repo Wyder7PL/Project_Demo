@@ -310,12 +310,12 @@ void SetPawnDodge(BattlePawn& pawn, std::ifstream& file)
 	}
 	if(setInitial)
 	{
-		pawn.SetPawnDoodge(dodge);
-		pawn.SetPawnInitialDoodge(initial);
+		pawn.SetPawnDodge(dodge);
+		pawn.SetPawnInitialDodge(initial);
 	}
 	else
 	{
-		pawn.SetPawnDoodge(dodge);
+		pawn.SetPawnDodge(dodge);
 		pawn.RandomizeDodge();
 	}
 }
