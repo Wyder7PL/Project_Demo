@@ -6,6 +6,7 @@
 #include "Distraction.hpp"
 #include "Electricity.hpp"
 #include "Fire.hpp"
+#include "HealthRegen.hpp"
 #include "Marked.hpp"
 #include "Poison.hpp"
 #include "Prepare.hpp"
@@ -29,6 +30,7 @@ void Demo::EffectList::LoadDefault()
 	Load(new Distraction());
 	Load(new Electricity());
 	Load(new Fire());
+	Load(new HealthRegen());
 	Load(new Marked());
 	Load(new Poison());
 	Load(new Prepare());

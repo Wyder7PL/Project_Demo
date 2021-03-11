@@ -28,7 +28,7 @@ void Demo::Poison::BattleUpdate(double delta, BattlePawn* pawn)
 	durationLeft -= delta;
 	if(currentDuration >= delay)
 	{
-		pawn->DealDamage("Pain",poisonStrenght,true);
+		pawn->DealDamage("Pain",poisonStrenght,0,true);
 		currentDuration -= delay;
 	}
 	if(durationLeft <= 0)
