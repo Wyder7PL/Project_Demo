@@ -7,6 +7,7 @@
 #include "graphic/Sprite.hpp"
 #include "graphic/TextureHolder.hpp"
 #include "graphic/DefaultAbilityDamageDisplay.hpp"
+#include "graphic/DamageDisplay.hpp"
 #include "Location.hpp"
 #include "EnergyBar.hpp"
 #include "effects/BattleEffect.hpp"
@@ -50,14 +51,14 @@ public:
 	void SetAbilityDisplayMode(Ability::DisplayMode);
 	Ability::DisplayMode GetAbilityDisplayMode();
 	
-	void AddEffect(std::unique_ptr<BattleEffect> be);
+	void AddEffect(std::unique_ptr<BattleEffect> be, const bool& avoidable = true);
 	void OrderToMove(Location moveDestination, bool forced = false);
 	
 	// Applying negative amounts will increase health
 	void DealDamage(const std::string& healthType, const int& amount, const unsigned int& accuracy = 0, const bool& ignoreResistances = false);
 	void GiveSupport(const std::string& healthType, const int& amount);
 	void SetHP(const std::string& healthType, int value);
-	std::vector<int>& GetDamageToDisplay();
+	std::vector<DamageDisplay>& GetDamageToDisplay();
 	
 	void SetPawnDoodge(const unsigned int& newDodge);
 	void SetPawnInitialDoodge(const unsigned int& initialDodge);
@@ -112,7 +113,7 @@ private:
 	PointU pawnSize;
 	
 	std::vector<Action> actionBuffer;
-	std::vector<int> damageToDisplay;
+	std::vector<DamageDisplay> damageToDisplay;
 	
 	Dodge dodge;
 	

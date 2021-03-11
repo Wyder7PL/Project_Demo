@@ -11,7 +11,7 @@ Demo::DefaultAbilityDamageDisplay::DefaultAbilityDamageDisplay(const std::string
 {
 	SetIcon(textureName);
 	UpdateText(std::to_string(amount));
-	SetTextColor(DamageNameToColor(textureName));
+	SetTextColor(DamageNameToColor::ToColor(textureName));
 }
 
 Demo::DefaultAbilityDamageDisplay::~DefaultAbilityDamageDisplay()
@@ -87,11 +87,4 @@ void Demo::DefaultAbilityDamageDisplay::SetTextAllign(bool allignFromLeftSide)
 void Demo::DefaultAbilityDamageDisplay::HiddenDraw(sf::RenderTarget& ) const
 {
 	
-}
-
-int Demo::DefaultAbilityDamageDisplay::DamageNameToColor(const std::string& name)
-{
-	if(name == "Pain")
-		return 0xC80000FF;
-	return 0;
 }

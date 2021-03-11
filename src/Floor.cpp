@@ -37,15 +37,13 @@ void Demo::Floor::Update(double delta)
 			{
 				j.Update(delta);
 				
-				std::vector<int>& pawnDamage = j.GetDamageToDisplay();
-				for(int& k : pawnDamage)
+				std::vector<DamageDisplay>& pawnDamage = j.GetDamageToDisplay();
+				for(DamageDisplay& k : pawnDamage)
 				{
-					DamageDisplay dd(std::to_string(k));
 					PointU newPos = j.GetPosition();
 					newPos.x += RandomInt<unsigned int>(0,pawnSize.x) - pawnSize.x/2; 
-					dd.SetPosition(newPos);
-					damageToDisplay.push_back(std::move(dd));
-					
+					k.SetPosition(newPos);
+					damageToDisplay.push_back(std::move(k));
 				}
 				pawnDamage.clear();
 				

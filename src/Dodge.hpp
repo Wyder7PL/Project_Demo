@@ -22,11 +22,15 @@ public:
 	
 	void RandomizeDodge();
 	
+	void SetFrameInviolability(const bool&);
+	bool IsInviolable();
+	
 private:
 	
 	unsigned int dodge;
 	unsigned int untilDodge;
-
+	
+	bool frameInviolability = false;
 };
 
 }

@@ -47,13 +47,16 @@ bool Demo::DamageDisplay::ToDestroy()
 	return lifetimeLeft <= 0;
 }
 
-#include <iostream>
-void Demo::DamageDisplay::TESTPrintStat()
-{
-	std::cout << "\n" << text.GetPosition().x << " " << lifetimeLeft << " " << initialLifetime;
-}
-
 void Demo::DamageDisplay::SetText(std::string message)
 {
 	text.UpdateText(std::move(message));
+}
+
+void Demo::DamageDisplay::SetTextColor(int rgba)
+{
+	const unsigned char r = (rgba&0xFF000000) >> (8 * 3);
+	const unsigned char g = (rgba&0x00FF0000) >> (8 * 2);
+	const unsigned char b = (rgba&0x0000FF00) >> (8 * 1);
+	const unsigned char a = (rgba&0x000000FF) >> (8 * 0);
+	text.SetFontColor(r,g,b,a);
 }

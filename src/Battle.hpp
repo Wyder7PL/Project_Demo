@@ -68,7 +68,7 @@ namespace Demo
 	
 		void DealDamageToPawn(const std::string& attackData,const Location& attackLocation,const unsigned int& accuracy);
 		void GiveSupportToPawn(const std::string& supportData,const Location& supportLocation);
-		void ApplyEffectToPawn(const std::string& effectData,const Location& effectLocation);
+		void ApplyEffectToPawn(const std::string& effectData,const Location& effectLocation, const bool& avoidable = true);
 		void MovePawn(const std::string& data, const Location& from, const Location& to, bool forced = false);
 		bool CreatePawnAction(const std::string& data,const Location& creationLocation);
 	

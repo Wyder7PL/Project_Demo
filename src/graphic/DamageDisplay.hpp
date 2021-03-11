@@ -9,6 +9,7 @@ namespace Demo
 class DamageDisplay : public Demo::GameObject
 {
 public:
+	// if message is a text, not number, then proportionalSize need to be set false
 	DamageDisplay(std::string message = "", bool proportionalSize = true, unsigned int size = 32, double lifetime = 1.0);
 	virtual ~DamageDisplay();
 	
@@ -22,8 +23,9 @@ public:
 	
 	virtual void SetText(std::string message);
 	
+	virtual void SetTextColor(int rgba);
+	
 	bool ToDestroy();
-	void TESTPrintStat();
 private:
 	Text text;
 	double lifetimeLeft;

@@ -27,6 +27,11 @@ void Demo::WatcherEffect::SetCreatorLocation(const Location& l)
 	creator = l;
 }
 
+void Demo::WatcherEffect::SetAccuracy(const unsigned int& acc)
+{
+	accuracy = acc;
+}
+
 void Demo::WatcherEffect::SetToDestroy()
 {
 	toDestroy = true;

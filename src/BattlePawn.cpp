@@ -77,6 +77,7 @@ Demo::BattlePawn& Demo::BattlePawn::operator=(const BattlePawn& pawn)
 	this->pawnCooldownBar = pawn.pawnCooldownBar;
 	this->healths = pawn.healths;
 	this->pawnSize = pawn.pawnSize;
+	this->dodge = pawn.dodge;
 	this->displayAbilities = pawn.displayAbilities;
 	return *this;
 }
@@ -86,6 +87,8 @@ void Demo::BattlePawn::Update(double delta)
 	if(healths.count("Pain") == 1)
 		if(healths["Pain"].GetEnergy() <= 0)
 			toDestroy = true;
+	
+	dodge.SetFrameInviolability(false);
 	
 	for(auto& i : abilities)
 		i->Update(delta);
@@ -228,8 +231,11 @@ Demo::ActionRange Demo::BattlePawn::GetAbilityRange(unsigned int index)
 	return ActionRange::None;
 }
 
-void Demo::BattlePawn::AddEffect(std::unique_ptr<BattleEffect> be)
+void Demo::BattlePawn::AddEffect(std::unique_ptr<BattleEffect> be, const bool& avoidable)
 {
+	if(dodge.IsInviolable() && avoidable)
+		return;
+	
 	std::string effectName = be->GetName();
 	bool existInEffects = false;
 	for(auto& i : effects)
@@ -268,6 +274,13 @@ void Demo::BattlePawn::OrderToMove(Location moveDestination, bool forced)
 
 void Demo::BattlePawn::DealDamage(const std::string& healthType, const int& amount,const unsigned int& accuracy, const bool& ignoreResistances)
 {
+	if(dodge.IsInviolable() && accuracy > 0)
+	{
+		DamageDisplay d("miss",false);
+		d.SetTextColor(DamageNameToColor::ToColor(healthType));
+		damageToDisplay.push_back(std::move(d));
+		return;
+	}
 	
 	DamageModificationInfo info((double)amount,healthType);
 	
@@ -284,12 +297,18 @@ void Demo::BattlePawn::DealDamage(const std::string& healthType, const int& amou
 	if(dodge.CanDodge())
 	{
 		dodge.ResetDodge();
+		dodge.SetFrameInviolability(true);
+		DamageDisplay d("miss",false);
+		d.SetTextColor(DamageNameToColor::ToColor(healthType));
+		damageToDisplay.push_back(std::move(d));
 		return;
 	}
 
 	try{
 		healths.at(healthType).Increase(-damage);
-		damageToDisplay.push_back(-damage);
+		DamageDisplay d(std::to_string(-damage),false);
+		d.SetTextColor(DamageNameToColor::ToColor(healthType));
+		damageToDisplay.push_back(std::move(d));
 	}
 	catch(const std::out_of_range& e){}
 }
@@ -304,7 +323,7 @@ void Demo::BattlePawn::GiveSupport(const std::string& healthType, const int& amo
 	try{
 		int damage = info.GetModifiedDamage();
 		healths.at(healthType).Increase(-damage);
-		damageToDisplay.push_back(-damage);
+		damageToDisplay.push_back(DamageDisplay(std::to_string(-damage)));
 	}
 	catch(const std::out_of_range& e){}
 }
@@ -322,7 +341,7 @@ void Demo::BattlePawn::SetHP(const std::string& healthType, int value)
 	catch(const std::out_of_range& e){}
 }
 
-std::vector<int>& Demo::BattlePawn::GetDamageToDisplay()
+std::vector<Demo::DamageDisplay>& Demo::BattlePawn::GetDamageToDisplay()
 {
 	return damageToDisplay;
 }

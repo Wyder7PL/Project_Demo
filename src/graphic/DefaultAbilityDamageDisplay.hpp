@@ -3,6 +3,7 @@
 #include "Graphic.hpp"
 #include "Sprite.hpp"
 #include "Text.hpp"
+#include "DamageNameToColor.hpp"
 
 
 namespace Demo
@@ -37,7 +38,6 @@ protected:
 	virtual void HiddenDraw(sf::RenderTarget& ) const override;
 
 private:
-	int DamageNameToColor(const std::string&);
 
 	Sprite icon;
 	Text number;

@@ -32,6 +32,7 @@ bool Demo::Dodge::CanDodge()
 {
 	return untilDodge >= dodge;
 }
+
 void Demo::Dodge::ResetDodge()
 {
 	if(CanDodge())
@@ -41,4 +42,14 @@ void Demo::Dodge::ResetDodge()
 void Demo::Dodge::RandomizeDodge()
 {
 	untilDodge = RandomInt<unsigned int>(0,dodge);
+}
+
+void Demo::Dodge::SetFrameInviolability(const bool& b)
+{
+	frameInviolability = b;
+}
+
+bool Demo::Dodge::IsInviolable()
+{
+	return frameInviolability;
 }

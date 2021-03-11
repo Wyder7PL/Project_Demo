@@ -18,6 +18,8 @@ public:
 	
 	void SetDestination(const Location&);
 	void SetCreatorLocation(const Location&);
+	
+	void SetAccuracy(const unsigned int& acc);
 protected:
 	
 	void SetToDestroy();
@@ -26,6 +28,8 @@ protected:
 
 	Location destination;
 	Location creator;
+	
+	unsigned int accuracy;
 private:
 	const std::string name;
 	bool toDestroy = false;

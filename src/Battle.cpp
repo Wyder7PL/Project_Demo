@@ -197,7 +197,7 @@ void Demo::Battle::ManageSingleAction(const Action& action)
 		case Action::ActionType::ApplyEffect:
 		{
 			if( (action.aIntention == ActionIntentions::Support) == (action.location.GetFloor() == action.creatorLocation.GetFloor()))
-				ApplyEffectToPawn(action.actionData,action.location);
+				ApplyEffectToPawn(action.actionData,action.location, action.aIntention != ActionIntentions::Support);
 			break;
 		}
 		case Action::ActionType::Move:
@@ -294,6 +294,7 @@ void Demo::Battle::CreateWatcherFromAction(const Action& action)
 	{
 		i->SetDestination(action.location);
 		i->SetCreatorLocation(action.creatorLocation);
+		i->SetAccuracy(action.aAccuracy);
 		watchers.push_back(std::move(i));
 	}
 }
@@ -374,7 +375,7 @@ void Demo::Battle::GiveSupportToPawn(const std::string& supportData, const Locat
 	}
 }
 
-void Demo::Battle::ApplyEffectToPawn(const std::string& effectData, const Location& effectLocation)
+void Demo::Battle::ApplyEffectToPawn(const std::string& effectData, const Location& effectLocation, const bool& avoidable)
 {
 	BattlePawn& pawn = GetPawn(effectLocation);
 	std::istringstream stream;
@@ -407,7 +408,7 @@ void Demo::Battle::ApplyEffectToPawn(const std::string& effectData, const Locati
 	{
 		BattleEffect* be = dynamic_cast<BattleEffect*>(i.release());
 		std::unique_ptr<BattleEffect> bep(be);
-		pawn.AddEffect(std::move(bep));
+		pawn.AddEffect(std::move(bep),avoidable);
 		
 	}
 }

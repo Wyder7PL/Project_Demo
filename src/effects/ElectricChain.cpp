@@ -92,7 +92,7 @@ void Demo::ElectricChain::SetPotentialTargets()
 void Demo::ElectricChain::ApplyElectricityToPawn(BattlePawn& target)
 {
 	if(initialDamage > 0)
-		target.DealDamage("Pain",initialDamage);
+		target.DealDamage("Pain",initialDamage,accuracy);
 	std::vector<std::unique_ptr<Demo::Effect>> vec;
 	vec = EffectList::GetInstance().CreateEffect("Electricity",{(double)electricityVoltage,(double)electricityIntensity});
 	for(auto& i : vec)

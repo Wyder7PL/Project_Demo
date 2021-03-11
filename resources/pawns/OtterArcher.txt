@@ -1,2 +1,3 @@
 <energy Pain 10 10>
-<ability 2.0 0.0 *point <damage Pain 1> <effect Distraction 1 3.0> >
+<dodge 18>
+<ability 2.0 0.0 *point <damage Pain 1> <effect Distraction 1 3.0> <accuracy 10> >

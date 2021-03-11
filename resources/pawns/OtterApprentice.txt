@@ -1,3 +1,3 @@
 <energy Pain 25 25>
-<ability 4.0 0.0 *point <damage Pain 6> <effect Fire 10> >
-<ability 20.0 1.0 *plus #Fireball <damage Pain 12> <effect Fire 30> >
+<ability 4.0 0.0 *point <damage Pain 6> <effect Fire 10> <accuracy 15> >
+<ability 20.0 1.0 *plus #Fireball <damage Pain 12> <effect Fire 30>  <accuracy 15>  >
