@@ -33,7 +33,7 @@ Demo::Effect* Demo::DefaultDamageBooster::Clone(const std::vector<double>& args)
 void Demo::DefaultDamageBooster::ModifyOutDamage(DamageModificationInfo& info)
 {
 	if(info.damageType == "Pain" && !info.heal)
-		info.preAddition += booost;
+		info.preAddition.push_back((double)booost);
 }
 
 void Demo::DefaultDamageBooster::MergeEffect(Effect* )

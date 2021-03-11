@@ -59,7 +59,7 @@ void Demo::Shield::ModifyInDamage(DamageModificationInfo& info)
 {
 	if(!info.neutralized)
 	{
-		info.preAddition -= double(damageDecrease);
+		info.preAddition.push_back(-(double(damageDecrease)));
 		info.multiply.push_back(percentageDecrease);
 	}
 }

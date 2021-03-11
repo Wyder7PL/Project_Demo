@@ -60,7 +60,7 @@ void Demo::Distraction::ModifyInDamage(DamageModificationInfo& info)
 {
 	if(activated && !used && !info.neutralized && !info.heal)
 	{
-		info.preAddition += double(damageIncrease);
+		info.preAddition.push_back((double)damageIncrease);
 		used = true;
 	}
 }

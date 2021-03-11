@@ -16,10 +16,12 @@ namespace Demo
 		{
 			double res = amount;
 			
-			res += preAddition;
+			for(double& i : preAddition) 
+				res += i;
 			for(double& i : multiply) 
 				res *= i;
-			res += postAddition;
+			for(double& i : postAddition) 
+				res += i;
 			
 			if( (!heal && amount < 0.0) || (heal && amount > 0.0) )
 				res = 0.0;
@@ -31,8 +33,8 @@ namespace Demo
 		std::string damageType;
 		bool neutralized = false;
 		bool heal = false;
-		double preAddition = 0;; // add before multiply
+		std::vector<double> preAddition = {}; // add before multiply
 		std::vector<double> multiply = {};
-		double postAddition = 0; // add after multiply
+		std::vector<double> postAddition = {}; // add after multiply
 	};
 }

@@ -64,7 +64,7 @@ void Demo::Prepare::ModifyInDamage(DamageModificationInfo& info)
 {
 	if(activated && !used && !info.neutralized)
 	{
-		info.preAddition -= double(damageDecrease);
+		info.preAddition.push_back(-(double)(damageDecrease));
 		info.multiply.push_back(percentageDecrease);
 		used = true;
 	}

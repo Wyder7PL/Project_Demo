@@ -67,7 +67,7 @@ void Demo::Critical::ModifyOutDamage(DamageModificationInfo& info)
 {
 	if(activated && !used)
 	{
-		info.preAddition += double(damageIncrease);
+		info.preAddition.push_back(double(damageIncrease));
 		info.multiply.push_back(percentageIncrease);
 		used = true;
 	}

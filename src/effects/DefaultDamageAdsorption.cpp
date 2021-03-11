@@ -18,7 +18,7 @@ void Demo::DefaultDamageAdsorption::BattleUpdate(double delta, BattlePawn* )
 void Demo::DefaultDamageAdsorption::ModifyInDamage(DamageModificationInfo& info)
 {
 	if(info.damageType == "Pain" && !info.heal)
-		info.preAddition -= (int)adsorption;
+		info.preAddition.push_back(-((int)adsorption));
 }
 
 Demo::BattleEffect* Demo::DefaultDamageAdsorption::Clone()

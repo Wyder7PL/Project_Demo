@@ -60,7 +60,7 @@ void Demo::Marked::ModifyInDamage(DamageModificationInfo& info)
 {
 	if(info.damageType == "Pain" && !info.heal)
 	{
-		info.postAddition += decreaseAmount;
+		info.postAddition.push_back((double)decreaseAmount);
 		info.multiply.push_back(percentageDecrease);
 	}
 }
