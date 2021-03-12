@@ -66,7 +66,7 @@ public:
 protected:
 	void SetFlag(PersistenceType flag, bool value);
 	
-	std::unique_ptr<Sprite> effectGraphic;
+	std::shared_ptr<Sprite> effectGraphic;
 private:
 	const std::string name; // set by constructors
 	std::bitset<9> persistenceFlags;
