@@ -6,11 +6,13 @@
 #include "Distraction.hpp"
 #include "Electricity.hpp"
 #include "Fire.hpp"
+#include "FloraWall.hpp"
 #include "HealthRegen.hpp"
 #include "Marked.hpp"
 #include "Poison.hpp"
 #include "Prepare.hpp"
 #include "Shield.hpp"
+#include "ThornEntangle.hpp"
 
 #include "ElectricChain.hpp"
 
@@ -30,11 +32,13 @@ void Demo::EffectList::LoadDefault()
 	Load(new Distraction());
 	Load(new Electricity());
 	Load(new Fire());
+	Load(new FloraWall());
 	Load(new HealthRegen());
 	Load(new Marked());
 	Load(new Poison());
 	Load(new Prepare());
 	Load(new Shield());
+	Load(new ThornEntangle());
 }
 
 std::vector<std::unique_ptr<Demo::Effect>> Demo::EffectList::CreateEffect(const std::string name, const std::vector<double>& args) const
