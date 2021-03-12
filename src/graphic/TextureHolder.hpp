@@ -21,7 +21,7 @@ public:
 	
 	void LoadDefault();
 	
-	void SetSpriteTexture(Demo::Sprite& sprite,const std::string& textureName);
+	void SetSpriteTexture(Sprite& sprite,const std::string& textureName);
 	
 private:
 	TextureHolder(){};

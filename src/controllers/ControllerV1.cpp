@@ -15,7 +15,7 @@ Demo::ControllerV1::ControllerV1(BattleData* data)
 	
 	BattlePawn EnemyPawn1;
 		if(PawnList::GetInstance().OverridePawn("OtterArcher",EnemyPawn1))
-			data->floors["Enemy"].AddPawnAtLocation(std::move(EnemyPawn1),PointU(1,1));
+			data->floors["Enemy"].AddPawnAtLocation(std::move(EnemyPawn1),PointU(2,1));
 	
 	BattlePawn EnemyPawn2;
 		if(PawnList::GetInstance().OverridePawn("OtterKnight",EnemyPawn2))
@@ -24,6 +24,27 @@ Demo::ControllerV1::ControllerV1(BattleData* data)
 	BattlePawn EnemyPawn3;
 		if(PawnList::GetInstance().OverridePawn("OtterGunner",EnemyPawn3))
 			data->floors["Enemy"].AddPawnAtLocation(std::move(EnemyPawn3),PointU(1,3));
+	
+	BattlePawn EnemyPawn4;
+		if(PawnList::GetInstance().OverridePawn("OtterCrossbowman",EnemyPawn4))
+			data->floors["Enemy"].AddPawnAtLocation(std::move(EnemyPawn4),PointU(1,2));
+	
+	BattlePawn EnemyPawn5;
+		if(PawnList::GetInstance().OverridePawn("OtterKnight",EnemyPawn5))
+			data->floors["Enemy"].AddPawnAtLocation(std::move(EnemyPawn5),PointU(0,1));
+	
+	BattlePawn EnemyPawn6;
+		if(PawnList::GetInstance().OverridePawn("OtterAxeman",EnemyPawn6))
+			data->floors["Enemy"].AddPawnAtLocation(std::move(EnemyPawn6),PointU(0,2));
+	
+	BattlePawn EnemyPawn7;
+		if(PawnList::GetInstance().OverridePawn("OtterCrossbowman",EnemyPawn7))
+			data->floors["Enemy"].AddPawnAtLocation(std::move(EnemyPawn7),PointU(3,2));
+	
+	BattlePawn EnemyPawn8;
+		if(PawnList::GetInstance().OverridePawn("OtterCrossbowman",EnemyPawn8))
+			data->floors["Enemy"].AddPawnAtLocation(std::move(EnemyPawn8),PointU(3,0));
+	
 	
 	// Fill entire floor with dummies
 	/*for(unsigned int i = 0; i < data->floors["Enemy"].GetDimensions().x; ++i)

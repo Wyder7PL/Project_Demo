@@ -63,6 +63,7 @@ public:
 	void SetPawnDodge(const unsigned int& newDodge);
 	void SetPawnInitialDodge(const unsigned int& initialDodge);
 	void RandomizeDodge();
+	Dodge& GetDodge();
 	
 	void UpdatePawnCooldown(const double& delta);
 	void IncreasePawnCooldown(const double& cooldown);

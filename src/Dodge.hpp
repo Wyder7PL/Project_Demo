@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Utility.hpp"
+#include "effects/DamageModificationInfo.hpp"
 
 namespace Demo
 {
@@ -25,12 +26,21 @@ public:
 	void SetFrameInviolability(const bool&);
 	bool IsInviolable();
 	
+	
+	void AddPreAddition(const unsigned int&);
+	void RemovePreAddition(const unsigned int&);
+	void AddMultiply(const double&);
+	void RemoveMultiply(const double&);
+	void AddPostAddition(const unsigned int&);
+	void RemovePostAddition(const unsigned int&);
+	
 private:
 	
 	unsigned int dodge;
 	unsigned int untilDodge;
 	
 	bool frameInviolability = false;
+	DamageModificationInfo modifier;
 };
 
 }

@@ -361,6 +361,10 @@ void Demo::BattlePawn::RandomizeDodge()
 	dodge.RandomizeDodge();
 }
 
+Demo::Dodge& Demo::BattlePawn::GetDodge()
+{
+	return dodge;
+}
 
 void Demo::BattlePawn::UpdatePawnCooldown(const double& delta)
 {

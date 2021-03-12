@@ -1,3 +1,4 @@
 <energy Pain 25 25>
-<ability 4.0 0.0 *point <damage Pain 6> <effect Fire 10> <accuracy 15> >
+<ability 4.0 0.0 *point <effect ThornEntangle 10> <accuracy 5> >
+<ability 20.0 5.0 *self #FloraWall <effect *support FloraWall 30 1 1.5> > 
 <ability 20.0 5.0 *point #HealthRegen <effect *support HealthRegen 2 20.0 2.0> > 
