@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BattleEffect.hpp"
+#include "../graphic/MultiframeSprite.hpp"
 
 namespace Demo
 {
@@ -24,7 +25,9 @@ public:
 	
 	int GetThornStrenght();
 	
-	private:
+private:
+	
+	void ChangePhase(BattlePawn* pawn);
 	
 	int thornStrenght;
 	double durationLeft;
@@ -32,6 +35,8 @@ public:
 	bool appliedEffect = false;
 	unsigned int phase = 1;
 	unsigned int pawnSize = 1;
+	
+	std::shared_ptr<MultiframeSprite> multiSprite;
 };
 
 }

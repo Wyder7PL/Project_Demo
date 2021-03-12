@@ -10,9 +10,12 @@ Demo::ThornEntangle::ThornEntangle(int strenght)
 ,thornStrenght(strenght)
 ,durationLeft(2.0)
 {
-	Sprite* s = new Sprite();
-	TextureHolder::GetInstance().SetSpriteTexture(*s,"ThornEntangle1");
-	effectGraphic.reset(s);
+	MultiframeSprite* s = new MultiframeSprite();
+	TextureHolder::GetInstance().SetSpriteTexture(*s,"ThornEntangle");
+	multiSprite.reset(s);
+	
+	multiSprite->SetAtlasSize(PointU(3,1));
+	effectGraphic = multiSprite;
 	
 	using EpT = Effect::PersistenceType;
 	Effect::SetFlag(EpT::Timed, true); 
@@ -33,6 +36,8 @@ void Demo::ThornEntangle::BattleUpdate(double delta, BattlePawn* pawn)
 	durationLeft -= delta;
 	if(durationLeft <= 0.0)
 	{
+		ChangePhase(pawn);
+		
 		int damage = pow(phase,2) * pawnSize;
 		if(damage > 0)
 		{
@@ -92,4 +97,19 @@ void Demo::ThornEntangle::MergeEffect(Effect* e)
 int Demo::ThornEntangle::GetThornStrenght()
 {
 	return thornStrenght;
+}
+
+void Demo::ThornEntangle::ChangePhase(BattlePawn* pawn)
+{
+	if(phase == 1 && thornStrenght >= 10 + 10*pow(pawnSize,2))
+	{
+		phase = 2;
+		pawn->GetDodge().AddMultiply(2.0);
+	}
+	if(phase == 2 && thornStrenght < 10 + 10*pow(pawnSize,2))
+	{
+		phase = 1;
+		pawn->GetDodge().RemoveMultiply(2.0);
+	}
+	multiSprite->SetFrame(phase-1);
 }
