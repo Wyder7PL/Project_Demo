@@ -12,6 +12,7 @@ https://drive.google.com/file/d/19_S6EVS8sCoLbXo4Y7qx12gP_nuC2jIu/view?usp=shari
 # Compile
 
 It can be compiled by typing this line if makefile won't work:
+
 `g++ -std=c++17 -Wall src/*.cpp src/graphic/*.cpp src/input/*.cpp src/controllers/*.cpp src/abilities/*.cpp src/effects/*.cpp src/battles/*.cpp -o Demo -lsfml-graphics -lsfml-window -lsfml-system`
 
 SFML is only dependency;
